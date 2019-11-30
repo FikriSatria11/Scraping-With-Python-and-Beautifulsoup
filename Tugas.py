@@ -15,12 +15,23 @@ for row in rows:
     texts.append(text)
 
 kolomNomor = []
+kolomKlub = []
+kolomMain = []
+kolomMenang = []
+kolomSeri = []
+kolomKalah = []
+kolomPoint = []
 for index in range(0,21):
     kolomNomor.append(texts[index][0])
-
-kolomKlub = []
-for index in range(0,21):
     kolomKlub.append(texts[index][1])
+    kolomMain.append(texts[index][2])
+    kolomMenang.append(texts[index][3])
+    kolomSeri.append(texts[index][4])
+    kolomKalah.append(texts[index][5])
+    kolomPoint.append(texts[index][6])
+
+print(kolomPoint)
+
 
 # from flask import Flask, Blueprint, render_template
 # from werkzeug.contrib.fixers import ProxyFix
