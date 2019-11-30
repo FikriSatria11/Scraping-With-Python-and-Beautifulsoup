@@ -30,20 +30,17 @@ for index in range(0,21):
     kolomKalah.append(texts[index][5])
     kolomPoint.append(texts[index][6])
 
-print(kolomPoint)
+from flask import Flask, Blueprint, render_template
+from werkzeug.contrib.fixers import ProxyFix
 
+web_app = Blueprint('app', __name__)
+@web_app.route('/')
+def hello():
+    return render_template('index.html', nomor=kolomNomor, klub=kolomKlub, main=kolomMain, menang=kolomMenang, seri=kolomSeri, kalah=kolomKalah, poin=kolomPoint)
 
-# from flask import Flask, Blueprint, render_template
-# from werkzeug.contrib.fixers import ProxyFix
+if __name__ == '__main__':
+    app = Flask(__name__)
+    app.register_blueprint(web_app, url_prefix='/')
 
-# web_app = Blueprint('app', __name__)
-# @web_app.route('/')
-# def hello():
-#     return render_template('index.html', nomor=kolomNomor, klub=kolomKlub)
-
-# if __name__ == '__main__':
-#     app = Flask(__name__)
-#     app.register_blueprint(web_app, url_prefix='/')
-
-#     app.wsgi_app = ProxyFix(app.wsgi_app)
-#     app.run()
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+    app.run()
